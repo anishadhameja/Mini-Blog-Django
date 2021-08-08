@@ -1,0 +1,33 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block msg %}
+  {% if messages %}
+    {% for message in messages %}
+    {% if message.tags %} 
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+    {% endfor %}
+    
+  {% endif %}
+{% endblock msg %}
+
+
+
+{% block content %}
+    <div class="col-sm-10">
+        <h3 class="text-white my-5">Dashboard/ Update Post</h3>
+        <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Update" class="btn btn-success">
+            <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+{% endblock content %}
+    
